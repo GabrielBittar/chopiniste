@@ -24,9 +24,24 @@ class LetrasControllerTest extends TestCase
 
         $response = $this->json('POST', 'api/letras/criar', [
             /* @todo TROCAR AQUI POR UM FAKER */
-            'changeThisForaFaker'
+            'conteudoParaPostar'
         ]);
         $response->assertStatus(config('constants.HTTP.CREATED'));
+    }
+
+    /**
+     * @test
+     */
+    public function obtem_uma_letra_de_musica()
+    {
+        $this->withoutMiddleware();
+        $idDaMusica = 1;
+
+        $response = $this->json('GET', 'api/letras/obter/' . $idDaMusica, [
+            /* @todo TROCAR AQUI POR UM FAKER */
+            'filtroDoGet'
+        ]);
+        $response->assertStatus(config('constants.HTTP.OK'));
     }
 
     public function tearDown(): void
